@@ -1,0 +1,7 @@
+name: OnlyOne
+main: com.koisv.onlyone.Main
+version: 0.11-SNAPSHOT
+api-version: 1.18
+libraries:
+  - io.github.monun:kommand-core:2.10.0
+  - org.jetbrains.kotlin:kotlin-stdlib:1.6.21
