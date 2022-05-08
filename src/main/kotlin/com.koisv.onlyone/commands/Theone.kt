@@ -18,7 +18,7 @@ object Theone {
                 sender.sendMessage("始まるぞ～")
             }
         }
-        node.then("start") {
+        node.then("stop") {
             requires { hasPermission(4,"onlyone.stop") }
             executes {
                 status = false
