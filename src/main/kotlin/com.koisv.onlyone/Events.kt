@@ -14,10 +14,12 @@ class Events : Listener {
             val host = e.entity as Player
             val hostInv = host.inventory.storageContents ?: return
             val leftHand = host.inventory.itemInOffHand
-            if (hostInv.any { listOf(it?.type ,leftHand.type).contains(e.item.itemStack.type) }) {
+            val cursor = host.itemOnCursor
+            if (hostInv.any { listOf(it?.type ,leftHand.type ,cursor.type).contains(e.item.itemStack.type) }) {
                 e.isCancelled = true
             } else {
                 if (!e.item.isValid) return
+                host.playPickupItemAnimation(e.item,1)
                 e.isCancelled = true
                 e.item.apply {
                     if (itemStack.amount > 1) {
@@ -28,7 +30,6 @@ class Events : Listener {
                         this.remove()
                     }
                 }
-                host.playPickupItemAnimation(e.item,1)
                 host.inventory.addItem(e.item.itemStack.asOne())
             }
         }
