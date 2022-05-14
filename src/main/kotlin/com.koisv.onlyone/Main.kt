@@ -38,7 +38,7 @@ class Main : JavaPlugin() {
             register("onlyone") {
                 Theone.register(this)
             }
-            register("craft","조합","ㅊㄱㅁㄽ","whgkq") {
+            register("조합","craft","whgkq","ㅊㄱㅁㄽ") {
                 Craft.register(this)
             }
         }
