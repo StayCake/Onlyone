@@ -2,7 +2,6 @@ package com.koisv.onlyone
 
 import com.koisv.onlyone.commands.Craft
 import com.koisv.onlyone.commands.Theone
-import hazae41.minecraft.kutils.get
 import io.github.monun.kommand.kommand
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
@@ -28,7 +27,7 @@ class Main : JavaPlugin() {
         logger.log(Level.INFO,"Starting Up... | v${description.version}")
         server.pluginManager.registerEvents(Events(),this)
 
-        craftLoc = dataFolder["craftTable.yml"]
+        craftLoc = File(dataFolder,"craftTable.yml")
         craft = YamlConfiguration.loadConfiguration(craftLoc)
         if (!craftLoc.canRead()) {
             craft.save(craftLoc)

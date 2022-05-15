@@ -58,10 +58,7 @@ class Events : Listener {
         val typeCheck =
             e.slotType == InventoryType.SlotType.CRAFTING
                     || e.slotType == InventoryType.SlotType.RESULT
-                    || (
-                    e.inventory.type == InventoryType.CHEST
-                            && e.slotType == InventoryType.SlotType.CONTAINER
-                    )
+                    || (e.inventory.type == InventoryType.CHEST && e.rawSlot < e.inventory.size)
         if (
             (e.click != ClickType.LEFT
             || e.clickedInventory
@@ -72,6 +69,13 @@ class Events : Listener {
             e.inventory.type == InventoryType.WORKBENCH
             || e.inventory.type == InventoryType.CHEST
         ) e.inventory.maxStackSize = 1
+        if (
+            e.click == ClickType.SHIFT_LEFT || e.click == ClickType.SHIFT_RIGHT
+        ) {
+            e.currentItem?.run {
+                if (e.whoClicked.inventory.contains(this.type)) e.isCancelled = true
+            }
+        }
     }
 
     @EventHandler

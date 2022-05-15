@@ -1,6 +1,6 @@
 name: OnlyOne
 main: com.koisv.onlyone.Main
-version: 0.14.3H-SNAPSHOT
+version: 0.14.4-SNAPSHOT
 api-version: 1.18
 libraries:
   - io.github.monun:kommand-core:2.10.0
