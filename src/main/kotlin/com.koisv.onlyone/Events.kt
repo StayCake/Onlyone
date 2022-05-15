@@ -70,7 +70,7 @@ class Events : Listener {
         ) e.isCancelled = true
         if (
             e.inventory.type == InventoryType.WORKBENCH
-            || e.inventory.type == InventoryType.WORKBENCH
+            || e.inventory.type == InventoryType.CHEST
         ) e.inventory.maxStackSize = 1
     }
 
