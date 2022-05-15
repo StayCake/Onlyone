@@ -33,7 +33,6 @@ class Events : Listener {
                 if (!e.item.isValid) return
                 host.playPickupItemAnimation(e.item,1)
                 e.item.apply {
-                    println(itemStack.amount)
                     if (itemStack.amount > 1) {
                         itemStack = itemStack.apply {
                             itemStack.amount -= 1
@@ -57,14 +56,22 @@ class Events : Listener {
     @EventHandler
     private fun chestLock(e: InventoryClickEvent) {
         val typeCheck =
-            e.slotType == InventoryType.SlotType.CRAFTING || e.slotType == InventoryType.SlotType.RESULT
+            e.slotType == InventoryType.SlotType.CRAFTING
+                    || e.slotType == InventoryType.SlotType.RESULT
+                    || (
+                    e.inventory.type == InventoryType.CHEST
+                            && e.slotType == InventoryType.SlotType.CONTAINER
+                    )
         if (
             (e.click != ClickType.LEFT
             || e.clickedInventory
                 ?.any { it?.type == e.cursor?.type } == true)
             && status && !typeCheck
         ) e.isCancelled = true
-        if (e.inventory.type == InventoryType.WORKBENCH) e.inventory.maxStackSize = 1
+        if (
+            e.inventory.type == InventoryType.WORKBENCH
+            || e.inventory.type == InventoryType.WORKBENCH
+        ) e.inventory.maxStackSize = 1
     }
 
     @EventHandler
